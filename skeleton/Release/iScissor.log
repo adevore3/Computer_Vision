@@ -1,0 +1,46 @@
+﻿Build started 10/10/2012 7:17:52 PM.
+     1>Project "C:\Users\Anton\Documents\School\SeniorYear\CSE455\skeleton\skeleton\iScissor.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Release\iScissor.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /Zi /nologo /W3 /WX- /O2 /Ob1 /Oy- /D WIN32 /D NDEBUG /D _CONSOLE /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Release/" /Fd".\Release/vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\BrushConfigUI.cpp src\correlation.cpp src\FltDesignUI.cpp src\HelpPageUI.cpp src\ImgFilterUI.cpp src\ImgFltAux.cpp src\ImgFltMain.cpp src\ImgView.cpp src\iScissor.cpp src\ScissorPanelUI.cpp src\ImageLib\FileIO.cpp src\ImageLib\Image.cpp src\ImageLib\RefCntMem.cpp /wd4996 
+         BrushConfigUI.cpp
+         correlation.cpp
+         FltDesignUI.cpp
+         HelpPageUI.cpp
+         ImgFilterUI.cpp
+         ImgFltAux.cpp
+         ImgFltMain.cpp
+         ImgView.cpp
+         iScissor.cpp
+     1>src\iScissor.cpp(130): warning C4101: 'nbrIndex' : unreferenced local variable
+         ScissorPanelUI.cpp
+         FileIO.cpp
+         Image.cpp
+         RefCntMem.cpp
+         Generating Code...
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Release/iScissor.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:lib fltk.lib fltkgl.lib fltkimages.lib comctl32.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib wsock32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc /MANIFEST /ManifestFile:".\Release\iScissor.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:".\Release/iScissor.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Release\iScissor.lib" /MACHINE:X86 .\Release/BrushConfigUI.obj
+         .\Release/correlation.obj
+         .\Release/FltDesignUI.obj
+         .\Release/HelpPageUI.obj
+         .\Release/ImgFilterUI.obj
+         .\Release/ImgFltAux.obj
+         .\Release/ImgFltMain.obj
+         .\Release/ImgView.obj
+         .\Release/iScissor.obj
+         .\Release/ScissorPanelUI.obj
+         .\Release/FileIO.obj
+         .\Release/Image.obj
+         .\Release/RefCntMem.obj /MACHINE:I386 
+         iScissor.vcxproj -> C:\Users\Anton\Documents\School\SeniorYear\CSE455\skeleton\skeleton\.\Release\iScissor.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:".\Release/iScissor.exe;#1" /manifest .\Release\iScissor.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file ".\Release\iScissor.unsuccessfulbuild".
+         Touching ".\Release\iScissor.lastbuildstate".
+     1>Done Building Project "C:\Users\Anton\Documents\School\SeniorYear\CSE455\skeleton\skeleton\iScissor.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.41

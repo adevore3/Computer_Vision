@@ -1,0 +1,157 @@
+
+        switch ( paddingSection )
+        {
+          case TOP_LEFT:
+            break;
+            
+          case TOP:
+            break;
+            
+          case TOP_RIGHT:
+            break;
+            
+          case RIGHT:
+            break;
+            
+          case BOTTOM_RIGHT:
+            break;
+            
+          case BOTTOM:
+            break;
+            
+          case BOTTOM_LEFT:
+            break;
+            
+          case LEFT:
+            break;
+
+          default:
+            paddedImg[padIndex + color] = img[imgIndex + color];
+            break;
+        }
+
+      enum int { TOP_LEFT, TOP, TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT };
+
+  for (int row = 0; row < imgHeight; row++) {
+    for (int col = 0; col < imgWidth; col++) {
+      int padRow = row + (knlWidth / 2);
+      int padCol = col + (knlHeight / 2);
+      int padIndex = 3 * (padRow * padWidth + padCol);
+      int imgIndex = 3 * (row * imgWidth + col);
+
+      for (int color = 0; color < 3; color++) {
+        paddedImg[padIndex + color] = img[imgIndex + color];
+      }
+    }
+  }
+
+
+  for (int padRow = 0; padRow < padHeight; padRow++) {
+    for (int padCol = 0; padCol < padWidth; padCol++) {
+      int index = 3 * (padRow * padWidth + padCol);
+      for (int color = 0; color < 3; color++) {
+        if (padRow == padHeight -1 && color == 2)
+          printf("%*u \n", 5, paddedImg[index + color]);
+        else
+          printf("%*u ", 5, paddedImg[index + color]);
+      }
+    }
+  }
+
+{
+	//// printf("InitNodeBuf in iScissor.cpp: to be implemented!\n");
+
+  // Pad image using linear extrapolation. Need padded image to
+  // determine cost of links between pixels.
+  int knlWidth, knlHeight; 
+  knlWidth = knlHeight = 3; // Currently kernels are 3 x 3
+  int padWidth = imgWidth + (knlWidth - 1);
+  int padHeight = imgHeight + (knlHeight -1);
+  int padImageSize = padWidth * padHeight * 3;
+
+  unsigned char *paddedImg = new unsigned char[padImageSize];
+
+  PadImage(paddedImg, img, padWidth, padHeight, imgWidth, imgHeight, knlWidth, knlHeight);
+
+  double maxD = 0;
+
+	for (int row = 0; row < imgHeight; row++) {
+		for (int col = 0; col < imgWidth; col++) {
+      Node node = Node();
+      node.column = col;
+      node.row = row;
+
+      for (int link = 0; link < 8; link++) {
+        double rsltPixel[] = {0 , 0, 0};
+        double cost = 0;
+
+        pixel_filter(rsltPixel,
+                     row + 1, // because we're using the paddedImg; (0, 0) in
+                     col + 1, // the original corresponds to (1, 1) in the padded
+                     paddedImg, 
+                     padWidth, 
+                     padHeight, 
+                     kernels[link], 
+                     knlWidth, 
+                     knlHeight, 
+                     1, 
+                     0);
+
+        // Compute magnitude of the color derivate across each link.
+        for (int color = 0; color < 3; color++) {
+          cost += rsltPixel[color] * rsltPixel[color];
+        }
+
+        cost = sqrt(cost/3);
+        node.linkCost[link] = cost;
+
+        // maxD is the maximum link cost for all links in the image.
+        if (cost > maxD)
+          maxD = cost;
+      }
+
+      nodes[row*imgWidth + col] = node;
+		}
+	}
+
+  //// for (int link = 0; link < 8; link++) {
+  ////   double *filterImg = new double[imgWidth * imgHeight * 3];
+  ////   image_filter(filterImg, img, NULL, imgWidth, imgHeight, kernels[link], 3, 3, 1, 0);
+
+  ////   for (int row = 0; row < imgHeight; row++)
+  ////   {
+  ////     for (int col = 0; col < imgWidth; col++)
+  ////     {
+  ////       double sum = 0;
+
+  ////       for (int color = 0; color < 3; color++)
+  ////       {
+  ////         double cost = filterImg[3 * (row * imgWidth + col) + color];
+  ////         if (cost > maxD)
+  ////           maxD = cost;
+
+  ////         sum += cost * cost;
+  ////       }
+  ////       sum = sqrt(sum/3);
+
+  ////       nodes[row * imgWidth + col].linkCost[link] = sum;
+  ////     }
+  ////   }
+
+  ////   delete[] filterImg;
+  //// }
+
+  // Once maxD is determined, compute the final cost for each link.
+  for (int row = 0; row < imgHeight; row++) {
+    for (int col = 0; col < imgWidth; col++) {
+      Node *node = nodes + row * imgWidth + col;
+      node->column = col;
+      node->row = row;
+
+      for (int link = 0; link < 8; link++) {
+        node->linkCost[link] = maxD - nodes->linkCost[link];
+        node->linkCost[link] *= (link % 2 == 0) ? 1 : SQRT2;
+      }
+    }
+  }
+}
