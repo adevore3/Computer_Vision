@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3D Reconstruction from Photometric Stereo</title>
+    <style type="text/css">
+      body {
+        background: #fed;
+        font-family: Tahoma;
+        font-size: 11pt;
+        padding: 10px;
+      }
+
+      #main {
+        background: #fff;
+        box-shadow: 0px 3px 8px #444;
+        color: #444;
+        margin: auto;
+        padding: 10px;
+        width: 40em;
+      }
+
+      h1 {
+        border-bottom: #999 3px solid;
+        margin: 0;
+        margin-bottom: 5px;
+      }
+
+      h2 {
+        border-bottom: #ccc 2px solid;
+        color: #666;
+        font-size: 14pt;
+        margin-bottom: 5px;
+      }
+
+      .img {
+        margin: 10px;
+        background: #fed;
+        box-shadow: 0px 3px 8px #888;
+        padding: 5px;
+        text-align: center;
+      }
+
+      .img p {
+        background: #fff;
+        display: block;
+        margin: 0;
+        padding: 5px;
+        text-align: left;
+      }
+
+      img {
+        margin-right: 10px;
+      }
+
+      #voting {
+        box-shadow: 0px 3px 8px #888;
+        display: block;
+        margin: auto;
+      }
+
+      a img {
+        border: none;
+      }
+
+      #author {
+        border-bottom: 2px #aaa solid;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="main">
+      <p>
+        <h1></h1>
+        Anton DeVore<br>
+        CSE455 Computer Vision<br>
+        Project 3 Artifact<br>
+      </p>
+
+      <p>
+        Things that worked:
+        <ul>
+          <li>The images were of good quality with no holes.</li>
+          <li>Code is straight forward.</li>
+          <li>All image reconstructions were successful.</li>
+        </ul>
+        Things that didn't worked:
+        <ul>
+          <li>The program isn't robust, requires pictures taking in a controlled
+          environment.</li>
+        </ul>
+      </p>
+
+      <div>
+        <a href="#owl_artifact">Owl Artifact</a> |
+        <a href="#horse_artifact">Horse Artifact</a> |
+        <a href="#buddha_artifact">Buddha Artifact</a> |
+      </div>
+
+      <a name="owl_artifact" />
+      <div>
+        <h2>Owl Artifact</h2>
+        <img src="OwlRGBNormalAlbedo.png" />
+        <img src="Owl3DStraightView.png" />
+        <img src="Owl3DAngledView.png" />
+      </div>
+
+      <a name="horse_artifact" />
+      <div>
+        <h2>Horse Artifact</h2>
+        <img src="HorseRGBNormalAlbedo.png" />
+        <img src="Horse3DStraightView.png" />
+        <img src="Horse3DAngledView.png" />
+      </div>
+
+      <a name="buddha_artifact" />
+      <div>
+        <h2>Buddha Artifact</h2>
+        <img src="BuddhaRGBNormalAlbedo.png" />
+        <img src="Buddha3DStraightView.png" />
+        <img src="Buddha3DAngledView.png" />
+      </div>
+
+    </div>
+  </body>
+</html>
+
